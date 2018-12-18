@@ -1,0 +1,17 @@
+@using CbeltRetake.Models;
+@model User;
+
+
+<a asp-action="Logout" asp-controller="LoginReg"><button>Logout</button></a>
+
+<a asp-action="Allideas" asp-controller="Idea">Back to All</a>
+
+<h1>@Model.firstname</h1>
+<h3>@Model.lastname</h3>
+<h4>@Model.email</h4>
+
+<div>
+    <h6>How Many Posts I have Liked: @Model.likes.Count()</h6>
+
+    <h6>How Many Posts I have: @ViewBag.count</h6>
+</div>

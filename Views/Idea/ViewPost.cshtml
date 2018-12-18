@@ -1,0 +1,18 @@
+@using CbeltRetake.Models;
+@model Idea;
+
+<h1>@Model.myuser.firstname's Idea</h1>
+
+<a asp-action="Logout" asp-controller="LoginReg"><button>Logout</button></a>
+
+<a asp-action="Allideas" asp-controller="Idea">Back to All</a>
+
+<p>@Model.description</p>
+
+<div>
+    <h6>Likers</h6>
+    @foreach(var user in Model.likes)
+    {
+        <p>@user.user.firstname @user.user.lastname</p>
+    }
+</div>

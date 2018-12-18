@@ -1,0 +1,34 @@
+@using CbeltRetake.Models;
+@model List<Idea>;
+
+
+<h1>Hi @ViewBag.name</h1>
+<a asp-action="Logout" asp-controller="LoginReg"><button>Logout</button></a>
+
+<form action="Ideaprocess" method="POST">
+    <label for="description">Your Idea Here</label>
+        <textarea name="description" cols="30" rows="10"></textarea>
+    <input type="submit">
+</form>
+
+<!-- foreach Logic -->
+    @foreach(var g in Model)
+    {
+        <div>
+            <h6><a href="/viewuser/@g.myuser.userid">@g.myuser.firstname @g.myuser.lastname</a> says:</h6>
+            <p>@g.description</p>
+            <a href="/viewpost/@g.ideaid">@g.likes.Count() Like this</a>
+            @if(@ViewBag.id == @g.myuser.userid)
+            {
+                <a href="/removeidea/@g.ideaid"><button>Delete</button></a>
+            }
+            else{
+                @if(@g.likes.Any(i => i.userid == @ViewBag.id))
+                {
+                }
+                else{
+                    <a href="/likeprocess/@g.ideaid"><button>Like</button></a>
+                }
+            }
+        </div>
+    }
